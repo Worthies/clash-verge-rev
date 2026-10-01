@@ -63,6 +63,7 @@ bitflags! {
         const LANGUAGE = 1 << 11;
         const LOG_LEVEL = 1 << 12;
         const LOG_FILE = 1 << 13;
+        const MCP_SERVER = 1 << 14;
 
         const GROUP_SYS_TRAY = Self::SYSTRAY_MENU.bits()
                              | Self::SYSTRAY_TOOLTIP.bits()
@@ -115,6 +116,8 @@ fn determine_update_flags(patch: &IVerge) -> UpdateFlags {
     let log_level = &patch.app_log_level;
     let log_max_size = patch.app_log_max_size;
     let log_max_count = patch.app_log_max_count;
+    let enable_mcp_server = patch.enable_mcp_server;
+    let mcp_server_port = patch.mcp_server_port;
 
     #[cfg(target_os = "windows")]
     let restart_core_needed = socks_enabled.is_some()
@@ -196,6 +199,9 @@ fn determine_update_flags(patch: &IVerge) -> UpdateFlags {
     if tray_inline_outbound_modes.is_some() {
         update_flags.insert(UpdateFlags::SYSTRAY_MENU);
     }
+    if enable_mcp_server.is_some() || mcp_server_port.is_some() {
+        update_flags.insert(UpdateFlags::MCP_SERVER);
+    }
 
     update_flags
 }
@@ -272,6 +278,9 @@ async fn process_terminated_flags(update_flags: UpdateFlags, patch: &IVerge) -> 
         let log_max_size = patch.app_log_max_size.unwrap_or(128);
         let log_max_count = patch.app_log_max_count.unwrap_or(8);
         logger::update_log_config(log_max_size, log_max_count).await?;
+    }
+    if update_flags.contains(UpdateFlags::MCP_SERVER) {
+        crate::mcp::restart_mcp_server_for_config_change().await;
     }
     Ok(())
 }

@@ -172,6 +172,10 @@ export async function patchVergeConfig(payload: IVergeConfig) {
   return invoke<void>('patch_verge_config', { payload })
 }
 
+export async function getMcpServerRunning() {
+  return invoke<boolean>('get_mcp_server_running')
+}
+
 export async function setDnsOverride(
   profileUid: string,
   enabled: boolean,

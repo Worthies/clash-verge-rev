@@ -7,6 +7,7 @@ mod constants;
 mod core;
 mod enhance;
 mod feat;
+mod mcp;
 mod module;
 mod process;
 pub mod utils;
@@ -180,6 +181,7 @@ mod app_init {
             cmd::get_clash_logs,
             cmd::get_verge_config,
             cmd::patch_verge_config,
+            cmd::get_mcp_server_running,
             cmd::test_delay,
             cmd::get_app_dir,
             cmd::copy_icon_file,

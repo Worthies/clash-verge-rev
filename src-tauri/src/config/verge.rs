@@ -207,6 +207,24 @@ pub struct IVerge {
     pub hover_jump_navigator_delay: Option<u64>,
 
     pub enable_external_controller: Option<bool>,
+
+    /// 启用内置 MCP (Model Context Protocol) 服务器，供 AI agent 调用
+    pub enable_mcp_server: Option<bool>,
+
+    /// MCP 服务器监听端口（仅限 127.0.0.1）
+    pub mcp_server_port: Option<u16>,
+
+    /// MCP 服务器鉴权 token（Bearer），加密存储
+    #[serde(
+        serialize_with = "serialize_encrypted",
+        deserialize_with = "deserialize_encrypted",
+        skip_serializing_if = "Option::is_none",
+        default
+    )]
+    pub mcp_server_token: Option<String>,
+
+    /// 是否允许 MCP 工具执行写操作（切换代理/模式/订阅、重启核心、开关系统代理与 TUN 等）
+    pub mcp_server_allow_mutations: Option<bool>,
 }
 
 #[derive(Default, Debug, Clone, Deserialize, Serialize)]
@@ -391,6 +409,10 @@ impl IVerge {
             enable_dns_settings: Some(false),
             home_cards: None,
             enable_external_controller: Some(false),
+            enable_mcp_server: Some(false),
+            mcp_server_port: Some(crate::constants::network::ports::DEFAULT_MCP_SERVER),
+            mcp_server_token: None,
+            mcp_server_allow_mutations: Some(false),
             ..Self::default()
         }
     }
@@ -493,6 +515,10 @@ impl IVerge {
         patch!(enable_dns_settings);
         patch!(home_cards);
         patch!(enable_external_controller);
+        patch!(enable_mcp_server);
+        patch!(mcp_server_port);
+        patch!(mcp_server_token);
+        patch!(mcp_server_allow_mutations);
     }
 
     pub fn get_log_level(&self) -> LevelFilter {

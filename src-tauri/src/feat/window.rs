@@ -136,6 +136,7 @@ pub async fn quit() -> clash_verge_signal::ShutdownOutcome {
     }
 
     utils::server::shutdown_embedded_server();
+    crate::mcp::stop_mcp_server();
     let app_handle = handle::Handle::app_handle();
     app_handle.exit(if cleanup_result.all_success { 0 } else { 1 });
     clash_verge_signal::ShutdownOutcome::Committed

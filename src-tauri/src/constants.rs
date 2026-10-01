@@ -11,6 +11,9 @@ pub mod network {
         pub const DEFAULT_MIXED: u16 = 7897;
         pub const DEFAULT_SOCKS: u16 = 7898;
         pub const DEFAULT_HTTP: u16 = 7899;
+
+        /// MCP (Model Context Protocol) 服务器默认端口
+        pub const DEFAULT_MCP_SERVER: u16 = 9898;
     }
 }
 

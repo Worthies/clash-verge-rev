@@ -61,6 +61,7 @@ pub async fn restart_app() {
     }
 
     utils::server::shutdown_embedded_server();
+    crate::mcp::stop_mcp_server();
     let app_handle = handle::Handle::app_handle();
     app_handle.restart();
 }

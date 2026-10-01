@@ -41,6 +41,7 @@ pub(crate) fn resolve_setup_sync() {
     AsyncHandler::spawn(|| async {
         AsyncHandler::spawn_blocking(init_scheme);
         AsyncHandler::spawn_blocking(server::embed_server);
+        crate::mcp::start_mcp_server();
         #[cfg(target_os = "linux")]
         AsyncHandler::spawn_blocking(watch_linux_theme_changed);
     });

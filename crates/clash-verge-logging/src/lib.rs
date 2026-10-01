@@ -40,6 +40,7 @@ pub enum Type {
     ProxyMode,
     Validate,
     ClashVergeRev,
+    Mcp,
 }
 
 impl fmt::Display for Type {
@@ -65,6 +66,7 @@ impl fmt::Display for Type {
             Self::ProxyMode => write!(f, "[ProxMode]"),
             Self::Validate => write!(f, "[Validate]"),
             Self::ClashVergeRev => write!(f, "[ClashVergeRev]"),
+            Self::Mcp => write!(f, "[Mcp]"),
         }
     }
 }

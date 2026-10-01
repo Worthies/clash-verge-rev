@@ -1346,6 +1346,35 @@ export interface TranslationResources {
             open: string
           }
         }
+        mcpServer: {
+          description: string
+          fields: {
+            allowMutations: string
+            enable: string
+            port: string
+            token: string
+          }
+          hints: {
+            allowMutations: string
+            tokenGenerated: string
+          }
+          messages: {
+            copyFailed: string
+            tokenCopied: string
+          }
+          placeholders: {
+            port: string
+            tokenPending: string
+          }
+          status: {
+            running: string
+            stopped: string
+          }
+          title: string
+          tooltips: {
+            copy: string
+          }
+        }
         proxyControl: {
           actions: {
             installService: string
