@@ -17,6 +17,7 @@ pub(super) enum Effect {
     Lightweight,
     LogLevel,
     LogFile,
+    McpServer,
 }
 
 pub(super) type Effects = BTreeSet<Effect>;
@@ -127,6 +128,10 @@ verge_registry! {
     enable_hover_jump_navigator => NoEffect;
     hover_jump_navigator_delay => NoEffect;
     enable_external_controller => [RestartCore];
+    enable_mcp_server => [McpServer];
+    mcp_server_port => [McpServer];
+    mcp_server_token => NoEffect;
+    mcp_server_allow_mutations => NoEffect;
 }
 
 pub(super) fn clash_effects(patch: &serde_yaml_ng::Mapping) -> Effects {

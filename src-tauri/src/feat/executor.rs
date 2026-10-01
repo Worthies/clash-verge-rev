@@ -104,6 +104,9 @@ async fn ensure_effect(
             )
             .await?;
         }
+        Effect::McpServer => {
+            crate::mcp::restart_mcp_server_for_config_change().await;
+        }
     }
     Ok(())
 }

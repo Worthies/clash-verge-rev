@@ -72,6 +72,35 @@
         "secretCopied": "API キーがクリップボードにコピーされました"
       }
     },
+    "mcpServer": {
+      "title": "MCP Server",
+      "description": "Lets AI assistants inspect and, once you allow it, control Clash Verge over a local MCP endpoint. Disabled by default and bound to 127.0.0.1 only.",
+      "fields": {
+        "enable": "Enable MCP Server",
+        "port": "Port",
+        "token": "Access Token",
+        "allowMutations": "Allow MCP mutations"
+      },
+      "status": {
+        "running": "Server is running",
+        "stopped": "Server is stopped"
+      },
+      "placeholders": {
+        "port": "9898",
+        "tokenPending": "Generated after first start"
+      },
+      "hints": {
+        "tokenGenerated": "Generated automatically on first start; required as a Bearer token",
+        "allowMutations": "Lets MCP tools change proxy/mode/profile/system proxy/TUN state, not just read it"
+      },
+      "tooltips": {
+        "copy": "Copy to clipboard"
+      },
+      "messages": {
+        "copyFailed": "Failed to copy",
+        "tokenCopied": "Token copied to clipboard"
+      }
+    },
     "externalCors": {
       "title": "外部 CORS 設定",
       "fields": {

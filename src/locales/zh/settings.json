@@ -72,6 +72,35 @@
         "secretCopied": "访问密钥已复制到剪贴板"
       }
     },
+    "mcpServer": {
+      "title": "MCP 服务器",
+      "description": "允许 AI 助手通过本地 MCP 接口查看，并在你允许后控制 Clash Verge。默认关闭，仅监听 127.0.0.1。",
+      "fields": {
+        "enable": "启用 MCP 服务器",
+        "port": "端口",
+        "token": "访问令牌",
+        "allowMutations": "允许 MCP 执行写操作"
+      },
+      "status": {
+        "running": "服务器运行中",
+        "stopped": "服务器已停止"
+      },
+      "placeholders": {
+        "port": "9898",
+        "tokenPending": "首次启动后自动生成"
+      },
+      "hints": {
+        "tokenGenerated": "首次启动时自动生成，作为 Bearer token 使用",
+        "allowMutations": "允许 MCP 工具修改代理/模式/订阅/系统代理/TUN 状态，而不仅仅是读取"
+      },
+      "tooltips": {
+        "copy": "复制到剪贴板"
+      },
+      "messages": {
+        "copyFailed": "复制失败",
+        "tokenCopied": "令牌已复制到剪贴板"
+      }
+    },
     "externalCors": {
       "title": "外部控制跨域设置",
       "fields": {
